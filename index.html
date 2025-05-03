@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=add" />  
+    <link rel="icon" type="image/png" href="colorPalette.png">
+<body>
+
+    <div id="palette" class="colorPalette">  
+        <button onclick="addColours()" class="add-button" id="addColors">
+           <span class="material-symbols-outlined">
+               add
+           </span>
+        </button>
+    </div>
+    
+
+    <script>
+        let arr = [];
+        const container = document.getElementById("palette");
+    
+        function addColours() {
+            if (arr.length < 5) {
+                let color = prompt("Enter the color below:");
+                if (!color) {
+                    alert("Please enter a color.");
+                    return;
+                }
+    
+                color = color.toLowerCase();
+                if (!CSS.supports("color", color)) {
+                   alert("Invalid color. Please enter a valid CSS color name or hex code.");
+                   return;
+                }
+                if (arr.includes(color)) {
+                    alert("This color is already in the palette.");
+                    return;
+                }
+    
+                const btn = document.createElement("button");
+                btn.innerText = color;
+                btn.setAttribute("id", `${color}colour`);
+                btn.style.backgroundColor = color;
+    
+                // Set event listener to change background color
+                btn.addEventListener("click", function () {
+                    document.body.style.backgroundColor = color;
+                });
+    
+                arr.push(color);
+                container.appendChild(btn);
+            } else {
+                let remove = prompt("Palette full! Which color do you want to remove?");
+                if (!remove) return;
+                remove = remove.toLowerCase();
+                let index = arr.indexOf(remove);
+    
+                if (index !== -1) {
+                    arr.splice(index, 1);
+                    const btn = document.getElementById(`${remove}colour`);
+                    if (btn) btn.remove();
+                } else {
+                    alert("Color not found in palette.");
+                }
+            }
+        }
+    </script>
+    
+
+
+</body>
+</html>

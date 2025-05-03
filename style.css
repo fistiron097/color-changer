@@ -1,0 +1,30 @@
+.colorPalette{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background-color: #303030;
+    padding: 1rem;
+    gap: 50px;
+}
+.colorPalette button{
+    height: 30px;
+    width: 90px ;
+    border: none;
+    gap: 10px;
+    border-radius: 10px;
+}
+
+.colorPalette button:hover{
+    background-color: grey;
+    color: white;
+    cursor: pointer;
+
+}
+
+.add-button {
+    height: 40px;
+    width: 40px;
+    border-radius: 100px;
+    border: 2px solid grey;
+}
+
